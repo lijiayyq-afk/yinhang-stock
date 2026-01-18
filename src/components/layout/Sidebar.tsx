@@ -10,6 +10,7 @@ const MENU_ITEMS = [
     { label: "Life Journal", href: "/life", icon: "🌱" },
     { label: "Review", href: "/review", icon: "🔍" },
     { label: "Bank Stocks", href: "/bank-stocks", icon: "🏦" },
+    { label: "Weather", href: "/weather", icon: "🌤️" },
 ];
 
 export default function Sidebar() {
