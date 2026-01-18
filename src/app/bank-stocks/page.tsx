@@ -7,17 +7,24 @@ import { fetchBankStockData, BankStockData, isDataExpired, getCachedStockData } 
 export default function BankStocksPage() {
   const [stockData, setStockData] = useState<BankStockData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   // 获取股票数据
   const loadStockData = async () => {
     setLoading(true);
+    setError(null);
     try {
       const data = await fetchBankStockData();
       setStockData(data);
       setLastUpdated(new Date());
+      
+      if (data.length === 0) {
+        setError('暂无数据，请稍后重试');
+      }
     } catch (error) {
       console.error('Failed to load stock data:', error);
+      setError('数据加载失败，请检查网络连接后重试');
     } finally {
       setLoading(false);
     }
@@ -25,16 +32,19 @@ export default function BankStocksPage() {
 
   // 初始加载数据
   useEffect(() => {
-    // 先从缓存获取数据
-    const cachedData = getCachedStockData();
-    if (cachedData.length > 0) {
-      setStockData(cachedData);
-      setLoading(false);
-    }
-    
     // 检查数据是否过期，如果过期则重新获取
     if (isDataExpired()) {
       loadStockData();
+    } else {
+      // 从缓存获取数据
+      const cachedData = getCachedStockData();
+      if (cachedData.length > 0) {
+        setStockData(cachedData);
+        setLoading(false);
+      } else {
+        // 缓存为空，重新获取
+        loadStockData();
+      }
     }
   }, []);
 
@@ -74,7 +84,18 @@ export default function BankStocksPage() {
 
       {loading ? (
         <div className="card p-8 text-center">
-          <p className="text-gray-600">加载中...</p>
+          <div className="loading inline-block mr-2"></div>
+          <p className="text-gray-600 inline-block">正在获取最新股价数据...</p>
+        </div>
+      ) : error ? (
+        <div className="card p-8 text-center">
+          <p className="text-red-600 mb-4">{error}</p>
+          <button
+            onClick={loadStockData}
+            className="btn btn-primary"
+          >
+            重新加载
+          </button>
         </div>
       ) : stockData.length > 0 ? (
         <>
@@ -83,7 +104,13 @@ export default function BankStocksPage() {
         </>
       ) : (
         <div className="card p-8 text-center">
-          <p className="text-gray-600">暂无数据，请点击刷新按钮获取数据</p>
+          <p className="text-gray-600 mb-4">暂无数据，请点击刷新按钮获取最新数据</p>
+          <button
+            onClick={loadStockData}
+            className="btn btn-primary"
+          >
+            获取数据
+          </button>
         </div>
       )}
     </div>
