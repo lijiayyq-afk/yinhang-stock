@@ -1,0 +1,149 @@
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.header {
+  grid-column: span 12;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-900);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Widgets */
+.quoteCard {
+  grid-column: span 12;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.quoteText {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--primary-800);
+  font-family: serif;
+  margin-bottom: 1rem;
+}
+
+.quoteAuthor {
+  font-size: 0.9rem;
+  color: var(--primary-600);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mainSection {
+  grid-column: span 8;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sideSection {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Task Item */
+.taskItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-100);
+  transition: all 0.2s;
+}
+
+.taskItem:last-child {
+  border-bottom: none;
+}
+
+.taskItem:hover {
+  background: var(--gray-50);
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--gray-300);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.checkboxChecked {
+  background: var(--primary-500);
+  border-color: var(--primary-500);
+  color: white;
+}
+
+.taskInput {
+  flex: 1;
+  border: none;
+  font-size: 1rem;
+  color: var(--text-main);
+  background: transparent;
+  outline: none;
+}
+
+.taskInput:focus {
+  /* No outline */
+}
+
+/* Health Inputs */
+.healthGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.healthInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.healthInput:focus {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
