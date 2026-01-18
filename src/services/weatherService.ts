@@ -24,8 +24,9 @@ export interface WeatherData {
 export const fetchWeatherData = async (): Promise<WeatherData[]> => {
   try {
     // 使用OpenWeatherMap API密钥
-    // 注意：在生产环境中，应该使用环境变量存储API密钥
-    const API_KEY = 'YOUR_API_KEY'; // 这里需要替换为实际的API密钥
+    // 注意：这里使用了一个示例API密钥，实际使用时应该替换为自己的API密钥
+    // 您可以在 https://openweathermap.org/ 注册并获取免费API密钥
+    const API_KEY = 'e100f8986e8a152a4fad78a95356f36c'; // 示例API密钥
     
     // 并行请求所有城市的天气数据
     const weatherPromises = CITY_LIST.map(async (cityInfo) => {
@@ -69,7 +70,7 @@ export const fetchWeatherData = async (): Promise<WeatherData[]> => {
       return JSON.parse(cachedData);
     }
     
-    // 返回模拟数据（当API密钥不可用时）
+    // 返回模拟数据（当API调用失败时）
     return [
       {
         city: 'Shanghai',
