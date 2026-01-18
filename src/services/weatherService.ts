@@ -24,9 +24,8 @@ export interface WeatherData {
 export const fetchWeatherData = async (): Promise<WeatherData[]> => {
   try {
     // 使用OpenWeatherMap API密钥
-    // 注意：这里使用了一个示例API密钥，实际使用时应该替换为自己的API密钥
-    // 您可以在 https://openweathermap.org/ 注册并获取免费API密钥
-    const API_KEY = 'e100f8986e8a152a4fad78a95356f36c'; // 示例API密钥
+    // 注意：这里使用了用户提供的API密钥
+    const API_KEY = '591121452afb479f04c1ee29795a2670'; // 用户提供的API密钥
     
     // 并行请求所有城市的天气数据
     const weatherPromises = CITY_LIST.map(async (cityInfo) => {
