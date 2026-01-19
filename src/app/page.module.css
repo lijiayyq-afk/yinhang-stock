@@ -38,6 +38,7 @@
   color: var(--primary-800);
   font-family: serif;
   margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .quoteAuthor {
@@ -98,6 +99,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .checkboxChecked {
@@ -113,6 +115,7 @@
   color: var(--text-main);
   background: transparent;
   outline: none;
+  padding: 0.5rem 0;
 }
 
 .taskInput:focus {
@@ -146,4 +149,85 @@
   font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mainSection {
+    grid-column: span 6;
+  }
+  
+  .sideSection {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardGrid {
+    gap: 1rem;
+  }
+  
+  .header {
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .quoteCard {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .quoteText {
+    font-size: 1.25rem;
+  }
+  
+  .mainSection {
+    grid-column: span 12;
+  }
+  
+  .sideSection {
+    grid-column: span 12;
+  }
+  
+  .healthGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .taskItem {
+    padding: 0.75rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .quoteCard {
+    padding: 1rem;
+  }
+  
+  .quoteText {
+    font-size: 1.1rem;
+  }
+  
+  .taskInput {
+    font-size: 0.9rem;
+  }
+  
+  .healthInput {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
 }
